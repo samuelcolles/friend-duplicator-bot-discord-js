@@ -1,10 +1,10 @@
 {
-    "singleQuote": true,
-    "semi": false,
-    "useTabs": true,
-    "bracketSpacing": true,
-    "bracketSameLine": false,
-    "arrowParens": "avoid",
-    "singleAttributePerLine": true
-
+	"singleQuote": true,
+	"semi": false,
+	"useTabs": true,
+	"bracketSpacing": true,
+	"bracketSameLine": false,
+	"arrowParens": "avoid",
+	"singleAttributePerLine": true,
+	"editor.formatOnSave": true
 }
