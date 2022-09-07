@@ -4,10 +4,11 @@ const wait = require('node:timers/promises').setTimeout
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
-		.setDescription('Replies with Pong!'),
-	async execute(interaction) {
-		await interaction.reply('Pong!')
-		await wait(2000)
-		await interaction.editReply('Suprise Double Pong!')
+		.setDescription('Check to see if the bot is up and running'),
+	async execute(interaction, client) {
+		console.log(client)
+		await interaction.reply('STATUS: ASSESSING')
+		await wait(1000)
+		await interaction.editReply('STATUS: ALL SYSTEMS GREEN')
 	},
 }
