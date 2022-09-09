@@ -12,7 +12,7 @@ const praises = [
 ]
 module.exports = {
 	name: 'messageCreate',
-	async execute(message, client) {
+	async execute(message) {
 		// only reply to messages in a certain channel and ignore messages that are sent by this bot
 		const senderID = message.author.id
 		if (message.channelId !== process.env.TEXT_CHANNEL_ID || senderID === '1015031869206691960') return
@@ -25,7 +25,7 @@ module.exports = {
 			return res
 		}
 
-		const channel = client.channels.cache.get(process.env.TEXT_CHANNEL_ID)
+		const channel = message.client.channels.cache.get(process.env.TEXT_CHANNEL_ID)
 		if (senderID === process.env.TARGET_USER_ID) {
 			if (Math.random() < chanceToMock) await channel.send(`${whackyCase(message.content)}${mocks[parseInt(Math.random() * mocks.length)]}`)
 			return

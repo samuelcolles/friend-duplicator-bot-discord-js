@@ -8,7 +8,6 @@ module.exports = {
 	async execute(interaction) {
 		const phrases = exampleData.catch_phrases
 		const phrase = phrases[parseInt(phrases.length * Math.random())]
-
 		await interaction.reply(phrase)
 
 	},

@@ -16,7 +16,6 @@ module.exports = {
 
 	async execute(interaction) {
 		const word = interaction.options._hoistedOptions[0].value
-		console.log(exampleData)
 		if (word in exampleData) await interaction.reply(`${word}: ${exampleData[word]}`)
 		else await interaction.reply(`I don't know what "${word}" means.`)
 

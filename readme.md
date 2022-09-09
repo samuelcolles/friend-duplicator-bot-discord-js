@@ -1,6 +1,6 @@
 ### What is this?
 
-I made the discord bot for a joke. It "replaces" someone by taking their name (or something close). besides taking their name their are a few / commands to mimic the targets replcement on demand. It also has a chance to mock what the target says to it, or praise what someone else says.
+I made this discord bot for a joke. It "replaces" someone by taking their name (or something close). besides taking their name their are a few / commands to mimic the targets replcement on demand. It also has a chance to mock what the target says to it, or praise what someone else says.
 
 ### Current Slash commands
 
