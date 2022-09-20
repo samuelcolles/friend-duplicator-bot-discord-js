@@ -6,7 +6,6 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Check to see if the bot is up and running'),
 	async execute(interaction) {
-		console.log(interaction)
 		await interaction.reply('STATUS: ASSESSING')
 		await wait(1000)
 		await interaction.editReply('STATUS: ALL SYSTEMS GREEN')

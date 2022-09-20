@@ -1,5 +1,4 @@
 const { SlashCommandBuilder } = require('discord.js')
-const exampleData = require('../exampleDefinitions.json')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -16,9 +15,8 @@ module.exports = {
 
 	async execute(interaction) {
 		const word = interaction.options._hoistedOptions[0].value
-		if (word in exampleData) await interaction.reply(`${word}: ${exampleData[word]}`)
+		const responseList = interaction.client.responses.definitions
+		if (word in responseList) await interaction.reply(`${word}: ${responseList[word]}`)
 		else await interaction.reply(`I don't know what "${word}" means.`)
-
 	},
-
 }
