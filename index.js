@@ -5,11 +5,11 @@ const path = require('node:path')
 const { Client, GatewayIntentBits, Collection } = require('discord.js')
 
 // load in the customResponses if the defaultResponses are not there
-let responseConfig
-if (fs.existsSync(path.join(__dirname, 'customResponses.json'))) {
-	responseConfig = require('./customResponses.json')
+let config
+if (fs.existsSync(path.join(__dirname, 'customConfig.json'))) {
+	config = require('./customConfig.json')
 } else {
-	responseConfig = require('./defaultResponses.json')
+	config = require('./defaultConfig.json')
 }
 
 const client = new Client({
@@ -23,7 +23,7 @@ const client = new Client({
 
 client.login(process.env.BOT_TOKEN)
 client.commands = new Collection()
-client.responses = responseConfig
+client.config = config
 
 const eventsPath = path.join(__dirname, 'events')
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'))

@@ -1,9 +1,15 @@
 {
 	"phase": 1,
+	"messageCounter": 0,
 	"target": "target id from discord",
 	"master": "user that can command this bot",
 	"textChannel": "<text Channel to monitor and respond to>",
 	"GuildID": "<Guild(sever) of the server you are using>",
+	"threasholds": {
+		"phase1": 40,
+		"phase2": 100,
+		"phase3": 170
+	},
 	"responses": {
 		"definitions": {
 			"insanity": "doing the same thing over and over again.",
