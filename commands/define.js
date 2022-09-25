@@ -15,8 +15,14 @@ module.exports = {
 
 	async execute(interaction) {
 		const word = interaction.options._hoistedOptions[0].value
-		const responseList = interaction.client.config.responses.definitions
-		if (word in responseList) await interaction.reply(`${word}: ${responseList[word]}`)
-		else await interaction.reply(`I don't know what "${word}" means.`)
+		const { sequelize } = interaction.client
+		const DefinitionList = await sequelize.model('Definitions').findAll()
+		for (let i = 0; i < DefinitionList.length; i++) {
+			if (DefinitionList[i].dataValues.word == word) {
+				await interaction.reply(`${word}: ${DefinitionList[i].dataValues.description}`)
+				return
+			}
+		}
+		await interaction.reply(`I don't know what "${word}" means.`)
 	},
 }

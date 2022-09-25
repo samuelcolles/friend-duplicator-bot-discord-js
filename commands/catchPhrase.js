@@ -5,10 +5,9 @@ module.exports = {
 		.setName('catch_phrase')
 		.setDescription('Delivers a random catch phrase from a list'),
 	async execute(interaction) {
-		const phrases = interaction.client.config.responses.catch_phrases
-		const phrase = phrases[parseInt(phrases.length * Math.random())]
-		await interaction.reply(phrase)
-
+		const { sequelize } = interaction.client
+		const catchPhrase = await sequelize.model('CatchPhrases').findOne({ order: sequelize.random() })
+		await interaction.reply(catchPhrase.dataValues.text)
 	},
 
 }

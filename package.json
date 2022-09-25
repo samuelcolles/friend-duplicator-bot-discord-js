@@ -5,7 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node .",
-		"dev": " nodemon ."
+		"dev": " nodemon .",
+		"db:create": "sequelize-cli db:create",
+		"db:migrate": "sequelize-cli db:migrate",
+		"db:g:migration": "sequelize-cli migration:generate --name",
+		"db:g:seed": "sequelize-cli seed:generate --name",
+		"db:seeds": "sequelize-cli db:seed:all"
 	},
 	"keywords": [],
 	"author": "samuelcolles",
@@ -20,6 +25,7 @@
 	},
 	"devDependencies": {
 		"eslint": "^8.23.0",
-		"nodemon": "^2.0.19"
+		"nodemon": "^2.0.19",
+		"sequelize-cli": "^6.4.1"
 	}
 }

@@ -5,10 +5,13 @@ module.exports = {
 		.setName('share')
 		.setDescription('Shares a url of some kind.'),
 	async execute(interaction) {
-		const phrases = interaction.client.config.responses.shareables
-		const phrase = phrases[parseInt(phrases.length * Math.random())]
-		await interaction.reply(phrase)
+		const { sequelize } = interaction.client
+		const share = await sequelize.model('Shares').findOne({ order: sequelize.random() })
+		if (share.dataValues === undefined) {
+			await interaction.reply('No data in "Shares" Table.')
+			return
+		}
+		await interaction.reply(share.dataValues.text)
 
 	},
-
 }
