@@ -5,6 +5,7 @@ const path = require('node:path')
 const { Client, GatewayIntentBits, Collection } = require('discord.js')
 const { Sequelize, DataTypes } = require('sequelize')
 
+// Instantiate Discord.js Client and connect to DiscordAPI
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -13,31 +14,9 @@ const client = new Client({
 		GatewayIntentBits.GuildMembers,
 	],
 })
-
-const sequelize = new Sequelize(
-	'ai_imposter_dev',
-	process.env.DB_USERNAME,
-	process.env.DB_PASSWORD,
-	{
-		host: process.env.DB_HOST,
-		dialect: 'postgres',
-	},
-)
-
 client.login(process.env.BOT_TOKEN)
-client.commands = new Collection()
 
-// Delete this soon
-let config
-if (fs.existsSync(path.join(__dirname, 'customConfig.json'))) {
-	config = require('./customConfig.json')
-} else {
-	config = require('./defaultConfig.json')
-}
-client.config = config
-client.sequelize = sequelize
-
-// Events
+// Event Handlers
 const eventsPath = path.join(__dirname, 'events')
 const eventFiles = fs
 	.readdirSync(eventsPath)
@@ -52,7 +31,8 @@ for (const file of eventFiles) {
 	}
 }
 
-// Commands
+// Slash Commands
+client.commands = new Collection()
 const commandsPath = path.join(__dirname, 'commands')
 const commandFiles = fs
 	.readdirSync(commandsPath)
@@ -63,7 +43,18 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command)
 }
 
-// Models
+// Sequelize Config
+const sequelize = new Sequelize(
+	'ai_imposter_dev',
+	process.env.DB_USERNAME,
+	process.env.DB_PASSWORD,
+	{
+		host: process.env.DB_HOST,
+		dialect: 'postgres',
+	},
+)
+
+// Sequelize Models
 const modelsPath = path.join(__dirname, 'models')
 const modelFiles = fs
 	.readdirSync(modelsPath)
@@ -73,3 +64,6 @@ for (const file of modelFiles) {
 	const modelPath = path.join(modelsPath, file)
 	require(modelPath)(sequelize, DataTypes)
 }
+
+// Attach sequelize to client object
+client.sequelize = sequelize

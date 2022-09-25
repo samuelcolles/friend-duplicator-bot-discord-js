@@ -1,4 +1,3 @@
-// I may have done this import wrong
 const path = require('node:path')
 const { whackyCase, updateMessageCounter } = require(path.join(__dirname, '../utils/utils.js'))
 
@@ -13,18 +12,21 @@ module.exports = {
 		if (message.channelId !== process.env.TEXT_CHANNEL_ID || senderID === message.client.user.id) return
 
 		const channel = message.client.channels.cache.get(process.env.TEXT_CHANNEL_ID)
+		const { sequelize } = message.client
 
 		if (senderID === process.env.TARGET_USER_ID) {
 			/* Handle messages coming from the target*/
-			updateMessageCounter(message.client)
-			const mocks = message.client.config.responses.mocks
-			if (Math.random() < chanceToMock) await channel.send(`${whackyCase(message.content)}${mocks[parseInt(Math.random() * mocks.length)]}`)
-			return
+			if (Math.random() < chanceToMock) {
+				updateMessageCounter(message.client)
+				const mock = await sequelize.model('Mocks').findOne({ order: sequelize.random() })
+				await channel.send(`${whackyCase(message.content)}${mock.dataValues.text}`)
+				return
+			}
 
 		} else if (Math.random() < chanceToPraise) {
 			/* Handle messages coming from others in the same channel */
-			const praises = message.client.config.responses.praises
-			await channel.send(`${praises[parseInt(Math.random() * praises.length)]}, <@${senderID}>!`)
+			const praise = await sequelize.model('Mocks').findOne({ order: sequelize.random() })
+			await channel.send(`${praise.dataValues.text}, <@${senderID}>!`)
 			return
 		}
 	},
