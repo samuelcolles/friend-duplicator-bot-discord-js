@@ -10,7 +10,16 @@
 	"rules": {
 		"arrow-spacing": ["warn", { "before": true, "after": true }],
 		"brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-		"comma-dangle": ["error", "always-multiline"],
+		"comma-dangle": [
+			"warn",
+			{
+				"arrays": "never",
+				"objects": "always",
+				"imports": "never",
+				"exports": "never",
+				"function": "never"
+			}
+		],
 		"comma-spacing": "error",
 		"comma-style": "error",
 		"curly": ["error", "multi-line", "consistent"],

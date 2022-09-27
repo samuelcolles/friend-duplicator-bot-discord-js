@@ -8,7 +8,7 @@ module.exports = {
 		const { sequelize } = interaction.client
 		const share = await sequelize.model('Shares').findOne({ order: sequelize.random() })
 		if (share.dataValues === undefined) {
-			await interaction.reply('No data in "Shares" Table.')
+			await interaction.reply('No data in "Shares" Table or no DataBase')
 			return
 		}
 		await interaction.reply(share.dataValues.text)

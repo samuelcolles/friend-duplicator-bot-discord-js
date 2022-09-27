@@ -4,7 +4,7 @@ require('dotenv').config()
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert('States', [{
-      phase: 0,
+      phase: 1,
       messageCounter: 0,
       guildID: process.env.GUILD_ID,
       textChannel: process.env.TEXT_CHANNEL_ID,

@@ -7,5 +7,5 @@
 	"arrowParens": "avoid",
 	"singleAttributePerLine": true,
 	"editor.formatOnSave": true,
-	"trailingComma": "all"
+	"trailingComma": "es5"
 }
