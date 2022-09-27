@@ -6,13 +6,6 @@ I made this discord bot for a joke. It "replaces" someone by taking their name (
 
 Please only use this on someone with a good sense of humor that won't be seriously offended. This is a tool of annoyance, not of bullying.
 
-## Current Slash commands
-
-/catch_phrase -Say a catch phrase from the exampleCatchPhrase array
-/define example -provide a word to define, if it is on the list the bot will define it, if it is not on the list the bot will say something sassy.
-/share - the bot will post a random link from its list of links
-/ping - test the bot, it also pretends that something is being checked, but it is just a message that gets edited on a timer
-
 ## Default Operation
 
 ### Phase 1:
@@ -27,29 +20,33 @@ Phase 2 is the same as phase 1, but now the bot also has a chance of copying the
 
 In phase 3 messages are copied then deleted like in phase 2, but this always hapens now instead of by chance. Also the bot will no longer mock the target.
 
-### Random Fun Commands
+## Random Fun Commands
 
 You can also interact directly with the bot by sending it various slash commands, it will respond with a phraise taken from from the database.
 
-#### Catchphrase
+#### Catchphrase:
 
 Returns a random catch phrase from the database
 
-#### Define
+#### Define:
 
 Returns a defintion based on the word you ask to be defined
 
-#### share
+#### Share:
 
 Returns a random link from the database
 
-### Useful commands
+## Useful commands
 
-#### Redisguise
+#### Redisguise:
 
 The bot will apply the current nickname of the target with "2.0" added to the end
 
-#### Server info
+#### Ping:
+
+Check that the bot is running.
+
+#### Server Info:
 
 Display some information of the server
 
