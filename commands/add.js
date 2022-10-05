@@ -19,8 +19,7 @@ module.exports = {
 		let response = ''
 		const { sequelize } = interaction.client
 
-		// .findOne({ order: sequelize.random() })
-		let text
+		// let text = ''
 		switch (inputArray[0]) {
 			case 'definition':
 				const word = inputArray[1]
@@ -34,35 +33,33 @@ module.exports = {
 				break
 			case 'catch_phrase':
 				inputArray.splice(0, 1)
-				text = inputArray.join(' ')
+				inputArray.join(' ')
 				await sequelize.model('CatchPhrases').create({
-					text,
+					text: inputArray.join(' '),
 				})
-				response = `Catch Phrase Added: "${text}"`
+				response = `Catch Phrase Added: "${inputArray.join(' ')}"`
 				break
 			case 'share_link':
 				inputArray.splice(0, 1)
 				text = inputArray.join(' ')
 				await sequelize.model('Shares').create({
-					text,
+					text: inputArray.join(' '),
 				})
 				response = `Catch Phrase Added: "${text}"`
 				break
 			case 'praise':
 				inputArray.splice(0, 1)
-				text = inputArray.join(' ')
 				await sequelize.model('Praises').create({
-					text,
+					text: inputArray.join(' '),
 				})
-				response = `Praise Added: "${text}"`
+				response = `Praise Added: "${inputArray.join(' ')}"`
 				break
 			case 'mock':
 				inputArray.splice(0, 1)
-				const text = inputArray.join(' ')
 				await sequelize.model('Mocks').create({
-					text,
+					text: inputArray.join(' '),
 				})
-				response = `Mock Added: "${text}"`
+				response = `Mock Added: "${inputArray.join(' ')}"`
 				break
 			default:
 				response = `Invalid type: "${inputArray[0]}".`
