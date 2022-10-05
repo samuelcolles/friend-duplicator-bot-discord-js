@@ -66,6 +66,9 @@ module.exports = {
 				break
 		}
 
-		await interaction.reply(response)
+		await interaction.reply({
+			content: response,
+			ephemeral: true,
+		})
 	},
 }
