@@ -43,7 +43,6 @@ module.exports = {
 			.findOne({ where: { phase: option.value } })
 		const { phase: newPhase } = threashold.dataValues
 		const newMessageNumber = threashold.dataValues.messageNumber + 1
-		console.log(threashold)
 
 		await sequelize
 			.model('State')
@@ -53,7 +52,7 @@ module.exports = {
 			)
 
 		interaction.reply({
-			content: 'Phase set!',
+			content: `Phase set to: "${newPhase}"`,
 			ephemeral: true,
 		})
 	},
