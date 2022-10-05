@@ -10,7 +10,7 @@ module.exports = {
 		// only reply to messages in a certain channel and ignore messages that are sent by this bot
 		const { sequelize } = message.client
 		const state = await sequelize.model('State').findOne()
-		const { textChannel, target, master } = state.dataValues
+		const { textChannel, target } = state.dataValues
 
 		if (
 			message.channelId !== textChannel ||

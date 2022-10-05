@@ -50,13 +50,39 @@ Check that the bot is running.
 
 Display some information of the server
 
-## How to use
+## How to Deploy
+
+### Pre Setup
 
 1. Follow the getting started section of discord.js (or some other guide) on creating bots using the discord developer portal. You will need some information from it to provide to the .env file.
 2. Enable developer mode in the discord client, this will make copying ID's of server's and users much easier
-3. Download and unzip this project someone
-4. Change the name of the "example.env" file to just ".env"
-5. Populate the field in the .env file with information from the discord developer portal
-6. install node/npm if not already installed
-7. open a terminal to the root of the project and run "npm run dev"
-8. Annoy your friend!
+3. Install node/npm if not already installed
+4. Install postgreSQL, make sure you remeber your password, the default admin username is "postgres".
+
+### Folder/Environment Setup
+
+1. Download and unzip this project somewhere
+2. Change the name of the "example.env" file to just ".env"
+3. Populate the field in the .env file with information from the discord developer portal
+
+### Terminal Commands
+
+Open a terminal to the root of the project and choose either yarn or npm as a package manager. I prefer yarn, but it shouldn't make a difference.
+
+### With yarn
+
+1. Install yarn with "npm i yarn"
+2. Create database with "yarn db:create"
+3. Migrate models with "yarn db:migrate"
+4. Seed the database with default values using "yarn db:seeds"
+
+### With Npm
+
+1. Create database with "npm run db:create"
+2. Migrate models with "npm run db:migrate"
+3. Seed the database with default values using "npm run db:seeds"
+
+### Run the Application now that the database is populated
+
+1. Navigate to the folder and open a terminal to the projects root directory (if you are not there already from populating the database)
+2. Run the bot with "yarn start" or "npm run start" depending on what package manager you want to use

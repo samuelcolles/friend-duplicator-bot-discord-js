@@ -8,10 +8,8 @@ module.exports = {
 			subcommand
 				.setName('word')
 				.setDescription('word to define')
-				.setRequired(false),
-
+				.setRequired(false)
 		),
-
 
 	async execute(interaction) {
 		const word = interaction.options._hoistedOptions[0].value
@@ -19,7 +17,9 @@ module.exports = {
 		const DefinitionList = await sequelize.model('Definitions').findAll()
 		for (let i = 0; i < DefinitionList.length; i++) {
 			if (DefinitionList[i].dataValues.word == word) {
-				await interaction.reply(`${word}: ${DefinitionList[i].dataValues.description}`)
+				await interaction.reply(
+					`${word}: ${DefinitionList[i].dataValues.description}`
+				)
 				return
 			}
 		}

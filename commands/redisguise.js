@@ -5,11 +5,16 @@ module.exports = {
 		.setName('redisguise')
 		.setDescription('Set avatar and nickname to match target'),
 	async execute(interaction) {
+		const { sequelize } = interaction.client
+		const state = await sequelize.model('State').findOne()
+		const { target } = state.dataValues
 
-		const targetMember = await interaction.guild.members.fetch(process.env.TARGET_USER_GUILD_ID)
+		const targetMember = await interaction.guild.members.fetch(target)
 		const targetNickname = targetMember.nickname
 
-		const thisUserMember = await interaction.guild.members.fetch(interaction.client.user.id)
+		const thisUserMember = await interaction.guild.members.fetch(
+			interaction.client.user.id
+		)
 		const thisUserNickname = thisUserMember.nickname
 
 		try {
@@ -27,8 +32,10 @@ module.exports = {
 			})
 		}
 
-		if (thisUserNickname !== null &&
-			targetNickname === thisUserNickname.slice(0, targetNickname.length)) {
+		if (
+			thisUserNickname !== null &&
+			targetNickname === thisUserNickname.slice(0, targetNickname.length)
+		) {
 			interaction.reply({
 				content: 'Nickname Already applied.\nAvatar Updated',
 				ephemeral: true,
@@ -41,6 +48,5 @@ module.exports = {
 			content: 'Nickname and Avatar Updated.',
 			ephemeral: true,
 		})
-
 	},
 }

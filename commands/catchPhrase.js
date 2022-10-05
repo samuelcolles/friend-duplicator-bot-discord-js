@@ -6,8 +6,9 @@ module.exports = {
 		.setDescription('Delivers a random catch phrase from a list'),
 	async execute(interaction) {
 		const { sequelize } = interaction.client
-		const catchPhrase = await sequelize.model('CatchPhrases').findOne({ order: sequelize.random() })
+		const catchPhrase = await sequelize
+			.model('CatchPhrases')
+			.findOne({ order: sequelize.random() })
 		await interaction.reply(catchPhrase.dataValues.text)
 	},
-
 }
