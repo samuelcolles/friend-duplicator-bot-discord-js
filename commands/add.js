@@ -19,7 +19,6 @@ module.exports = {
 		let response = ''
 		const { sequelize } = interaction.client
 
-		// let text = ''
 		switch (inputArray[0]) {
 			case 'definition':
 				const word = inputArray[1]
@@ -41,11 +40,10 @@ module.exports = {
 				break
 			case 'share_link':
 				inputArray.splice(0, 1)
-				text = inputArray.join(' ')
 				await sequelize.model('Shares').create({
 					text: inputArray.join(' '),
 				})
-				response = `Catch Phrase Added: "${text}"`
+				response = `Share Link Added: "${inputArray.join(' ')}"`
 				break
 			case 'praise':
 				inputArray.splice(0, 1)
