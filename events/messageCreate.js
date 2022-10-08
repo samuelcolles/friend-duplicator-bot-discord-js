@@ -7,11 +7,11 @@ module.exports = {
 	name: 'messageCreate',
 	async execute(message) {
 		const senderID = message.author.id
-		// only reply to messages in a certain channel and ignore messages that are sent by this bot
 		const { sequelize } = message.client
 		const state = await sequelize.model('State').findOne()
 		const { textChannel, target } = state.dataValues
 
+		// only reply to messages in a certain channel and ignore messages that are sent by this bot
 		if (
 			message.channelId !== textChannel ||
 			senderID === message.client.user.id
@@ -24,7 +24,6 @@ module.exports = {
 			handleTargetResponses(message)
 			return
 		}
-		// if(senderID === master) return
 		/* Handle messages coming from others in the same channel */
 		handleUserResponses(message)
 		return
