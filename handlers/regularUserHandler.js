@@ -16,9 +16,7 @@ module.exports = {
 				const praise = await sequelize
 					.model('Praises')
 					.findOne({ order: sequelize.random() })
-				await channel.send(
-					`${praise.dataValues.text}, <@${message.author.id}>!`
-				)
+				await channel.send(`${praise.dataValues.text}, ${message.author.id}!`)
 				break
 		}
 	},

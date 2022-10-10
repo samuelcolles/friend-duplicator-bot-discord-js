@@ -5,6 +5,10 @@ module.exports = {
 		switch (phase) {
 			case 2:
 				await message.reply('>:)')
+			case 3:
+				await interaction.guild.members
+					.fetch(target)
+					.setNickname('Inferior Human Subject')
 		}
 	},
 }
