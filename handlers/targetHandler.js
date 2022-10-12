@@ -10,10 +10,9 @@ module.exports = {
 			.model('Threasholds')
 			.findOne({ where: { phase } })
 		const channel = message.client.channels.cache.get(textChannel)
-
+		if (threashold.dataValues.chanceToMock < Math.random()) return
 		switch (phase) {
 			case 1:
-				if (threashold.dataValues.chanceToMock < Math.random()) return
 				const mock = await sequelize
 					.model('Mocks')
 					.findOne({ order: sequelize.random() })
@@ -22,7 +21,7 @@ module.exports = {
 				)
 				break
 			case 2:
-				if (threashold.dataValues.chanceToMock < Math.random()) return
+				// Either do the starting mock or react with a poop emoji
 				if (Math.random() < 0.5) {
 					const mock = await sequelize
 						.model('Mocks')
@@ -31,11 +30,11 @@ module.exports = {
 						`${whackyCase(message.content)}, ${mock.dataValues.text}!`
 					)
 				} else {
-					await message.delete()
-					await channel.send(message.content)
+					await message.react('💩')
 				}
 				break
 			case 3:
+				//Replace the targets message with the same message, but from the bot.
 				await message.delete()
 				await channel.send(message.content)
 				break

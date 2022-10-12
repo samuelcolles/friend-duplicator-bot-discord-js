@@ -16,7 +16,7 @@ module.exports = {
 					updatedAt: new Date(),
 				},
 			],
-			{},
+			{}
 		)
 		await queryInterface.bulkInsert('Praises', [
 			{
@@ -74,40 +74,6 @@ module.exports = {
 				updatedAt: new Date(),
 			},
 		])
-		await queryInterface.bulkInsert('Threasholds', [
-			{
-				phase: 1,
-				messageNumber: 0,
-				chanceToMock: 0.2,
-				chanceToPraise: 0.2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
-			},
-			{
-				phase: 2,
-				messageNumber: 100,
-				chanceToMock: 0.2,
-				chanceToPraise: 0.4,
-				createdAt: new Date(),
-				updatedAt: new Date(),
-			},
-			{
-				phase: 3,
-				messageNumber: 150,
-				chanceToMock: 0.5,
-				chanceToPraise: 0.4,
-				createdAt: new Date(),
-				updatedAt: new Date(),
-			},
-			{
-				phase: 4,
-				messageNumber: 200,
-				chanceToMock: 0.9,
-				chanceToPraise: 0.5,
-				createdAt: new Date(),
-				updatedAt: new Date(),
-			},
-		])
 	},
 
 	async down(queryInterface) {
@@ -116,6 +82,5 @@ module.exports = {
 		await queryInterface.bulkDelete('CatchPhrases', null, {})
 		await queryInterface.bulkDelete('Definitions', null, {})
 		await queryInterface.bulkDelete('Mocks', null, {})
-		await queryInterface.bulkDelete('Threasholds', null, {})
 	},
 }
